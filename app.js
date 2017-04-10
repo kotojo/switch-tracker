@@ -33,7 +33,7 @@ function parseHtml(html) {
   const content = $('.contents');
   const id = content.children()[0].attribs['data-fullname'];
   if (id !== lastPostId && id.length === 9) {
-    const heading = $($('.contents').children()[0]).children('div').children('header').text();
+    let heading = $($('.contents').children()[0]).children('div').children('header').text();
     if (lastPostId === '') {
       heading = `Service restarted! Newest post is ${heading}`;
     }
@@ -66,8 +66,7 @@ function sendMessage(heading) {
 }
 
 function handleError(err) {
-  const reason = err.toString();
-  console.log(`Failed to get page because: ${reason.substring(0, 20)}`);
+  console.log(`Failed to get page because: ${err}`);
   setTimeout(main, oneMinute);
 }
 

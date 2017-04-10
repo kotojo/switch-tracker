@@ -1,10 +1,11 @@
 {
   "name": "switch",
   "version": "1.0.0",
-  "description": "",
-  "main": "switch.js",
+  "description": "Nintendo switch stock tracker",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node app.js"
   },
   "author": "Bruce Kellerman",
   "license": "MIT",
@@ -13,5 +14,8 @@
     "request": "^2.81.0",
     "request-promise": "^4.2.0",
     "twilio": "^2.11.1"
+  },
+  "engines": {
+    "node": "4.1.1"
   }
 }
