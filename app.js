@@ -2,6 +2,8 @@ const request = require('request-promise');
 const cheerio = require('cheerio');
 const twilio = require('twilio');
 const config = require('./config');
+const http = require('http');
+const port = process.env.PORT || 3000;
 
 const accountSid = config.sid;
 const authToken = config.authToken;
@@ -9,6 +11,7 @@ const phoneNumber = config.phoneNumber;
 const client = new twilio.RestClient(accountSid, authToken);
 
 let lastPostId = '';
+let lastPost;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const oneMinute = 1000 * 60;
 
@@ -38,6 +41,7 @@ function parseHtml(html) {
       heading = `Service restarted! Newest post is ${heading}`;
     }
     lastPostId = id;
+    lastPost = heading;
     return heading;
   }
 }
@@ -71,3 +75,13 @@ function handleError(err) {
 }
 
 main();
+
+http.createServer((req, res) => {
+  res.end(`Current newest item: ${lastPost}`);
+}).listen(port, err => {
+  if (err) {
+    console.log(`Something happened: ${err}`);
+  }
+
+  console.log(`Listening on port ${port}`)
+});
