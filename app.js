@@ -70,3 +70,5 @@ function handleError(err) {
   console.log(`Failed to get page because: ${reason.substring(0, 20)}`);
   setTimeout(main, oneMinute);
 }
+
+main();
