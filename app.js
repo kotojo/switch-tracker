@@ -79,7 +79,7 @@ function handleError(err) {
 main();
 
 http.createServer((req, res) => {
-  res.end(`Current newest item: ${lastPost}`);
+  res.end(`Sorry, this isn't working currently! Reddit's on to my tricks!`);
 }).listen(port, err => {
   if (err) {
     console.log(`Something happened: ${err}`);
